@@ -7,6 +7,14 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
 import{format}from'date-fns';
 const Header = () => {
+  const[Opendate,setOpenDate]=useState(false);
+  const[Openoptions,setOpenoptions]=useState(false);
+  const[options,setOptions]=useState({
+    adult:1,
+    childern:0,
+    room:1
+  });
+
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -53,18 +61,46 @@ const Header = () => {
       <div className="headerserachitem">
       <FontAwesomeIcon icon={faCalendarDays} className='headericon' />
      
-      <span className='headersearchtext'>{`${format(date[0].startDate,"MM/dd/yyy")}`}</span>
-          <DateRange
-      editableDateInputs={true}
-      onChange={item => setDate([item.selection])}
-      moveRangeOnFirstSelection={false}
-      ranges={date}
-      className='headerdate'
-    />
+      <span onClick={()=>setOpenDate(!Opendate)} className='headersearchtext' >{`${format(date[0].startDate,"MM/dd/yyy"  )} to ${format(date[0].endDate,"MM/dd/yyy"  )}`}</span>
+           {Opendate && <DateRange
+        editableDateInputs={true}
+        onChange={item => setDate([item.selection])}
+        moveRangeOnFirstSelection={false}
+        ranges={date}
+        className='headerdate'
+      />}
       </div>
       <div className="headerserachitem">
       <FontAwesomeIcon icon={faPerson} className='headericon' />
-      <span className='headersearchtext'>2 adults 2 childern 1 room</span>
+      <span onClick={()=>setOpenoptions(!Openoptions)} className='headersearchtext'>{`${options.adult} adult . ${options.childern} childern . ${options.room} room`}</span>
+    { Openoptions&& <div className="options">
+        <div className="optionitem">
+              <span className="optiontext">Adult</span>
+              <div className="optioncountiners">
+              <button className='optionscountiner'>+</button>
+              <span className='optionscountinernumber'>1</span>
+              <button className='optionscountiner'>-</button>
+              </div>
+        </div>
+        <div className="optionitem">
+              <span className="optiontext">Childern</span>
+              <div className="optioncountiners">
+              <button className='optionscountiner'>+</button>
+              <span className='optionscountinernumber'>0</span>
+              <button className='optionscountiner'>-</button>
+             
+        </div>
+        </div>
+        <div className="optionitem">
+              <span className="optiontext">Room</span>
+              <div className="optioncountiners">
+              <button className='optionscountiner'>+</button>
+              <span className='optionscountinernumber'>1</span>
+              <button className='optionscountiner'>-</button>
+              </div>
+    
+        </div>
+      </div>}
       </div>
       <div className="headerserachitem">
        <button className="headerbutton">Search</button>
