@@ -22,7 +22,14 @@ const Header = () => {
       key: 'selection'
     }
   ]);
-  
+  const handeloptions=(name,operations)=>{
+  setOptions(prev=>{
+    return {
+      ...prev,[name]:operations==="i" ? prev[name] +1 
+      :prev[name]-1 
+    }
+  })
+  }
 
   return (
     <div className='header'>
@@ -77,26 +84,27 @@ const Header = () => {
         <div className="optionitem">
               <span className="optiontext">Adult</span>
               <div className="optioncountiners">
-              <button className='optionscountiner'>+</button>
-              <span className='optionscountinernumber'>1</span>
-              <button className='optionscountiner'>-</button>
+              <button className='optionscountiner' onClick={()=>handeloptions("adult","i")}>+</button>
+              <span className='optionscountinernumber'>{`${options.adult}`}</span>
+              
+              <button disabled={options.adult<=1} className='optionscountiner' onClick={()=>handeloptions("adult","d")}>-</button>
               </div>
         </div>
         <div className="optionitem">
               <span className="optiontext">Childern</span>
               <div className="optioncountiners">
-              <button className='optionscountiner'>+</button>
-              <span className='optionscountinernumber'>0</span>
-              <button className='optionscountiner'>-</button>
+              <button className='optionscountiner' onClick={()=>handeloptions("childern","i")}>+</button>
+              <span className='optionscountinernumber'>{`${options.childern}`}</span>
+              <button className='optionscountiner' disabled={options.childern<=0} onClick={()=>handeloptions("childern","d")}>-</button>
              
         </div>
         </div>
         <div className="optionitem">
               <span className="optiontext">Room</span>
               <div className="optioncountiners">
-              <button className='optionscountiner'>+</button>
-              <span className='optionscountinernumber'>1</span>
-              <button className='optionscountiner'>-</button>
+              <button className='optionscountiner' onClick={()=>handeloptions("room","i")}>+</button>
+              <span className='optionscountinernumber'>{`${options.room}`}</span>
+              <button className='optionscountiner' disabled={options.room<=1} onClick={()=>handeloptions("room","d")}>-</button>
               </div>
     
         </div>
