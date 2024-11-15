@@ -11,6 +11,10 @@ position: relative;
     margin: 20px 0px 100px 0px;
  
 }
+.headercontainer.listmode{
+    margin: 20px 0px 0px 0px;
+
+}
 .headerlist{
     display: flex;
     gap: 40px;
@@ -65,10 +69,12 @@ position: relative;
 }
 .headersearchtext{
     color: lightgray;
+    cursor: pointer;
 }
 .headerdate{
     position: absolute;
     top: 50px;
+    z-index: 2;
 }
 .options{
     position: absolute;
@@ -78,6 +84,7 @@ position: relative;
     border-radius: 5px;
     -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
     box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+    z-index: 2;
 }
 .optionitem{
     width: 200px;
@@ -99,4 +106,7 @@ position: relative;
     color: #0071c2;
     cursor: pointer;
     background-color: white;
+}
+.optionscountiner:disabled{
+    cursor: not-allowed;
 }
